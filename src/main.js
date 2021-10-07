@@ -25,6 +25,15 @@ const showTasks = () => {
 const createStatusButton = (task, status) => {
   const statusButton = document.createElement('button');
   statusButton.innerText = task.status;
+  statusButton.onclick = function() {
+    const tr = this.parentNode.parentNode;
+    if (tasks[tr.sectionRowIndex].status === '作業中') {
+      tasks[tr.sectionRowIndex].status = '完了';
+    } else {
+      tasks[tr.sectionRowIndex].status = '作業中';
+    }
+    showTasks();
+  };
   status.appendChild(statusButton);
 }
 
