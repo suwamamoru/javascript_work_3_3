@@ -25,26 +25,25 @@ const showTasks = () => {
 const createStatusButton = (task, status) => {
   const statusButton = document.createElement('button');
   statusButton.innerText = task.status;
-  statusButton.onclick = function() {
-    const tr = this.parentNode.parentNode;
-    if (tasks[tr.sectionRowIndex].status === '作業中') {
-      tasks[tr.sectionRowIndex].status = '完了';
+  statusButton.addEventListener('click', () => {
+    if (task.status === '作業中') {
+      task.status = '完了';
     } else {
-      tasks[tr.sectionRowIndex].status = '作業中';
+      task.status = '作業中';
     }
-    showTasks();
-  };
+    statusButton.remove();
+    createStatusButton(task, status);
+  });
   status.appendChild(statusButton);
-}
+};
 
 const createRemoveButton = (task, remove) => {
   const removeButton = document.createElement('button');
   removeButton.innerText = task.remove;
-  removeButton.onclick = function() {
-    const tr = this.parentNode.parentNode;
-    tasks.splice(tr.sectionRowIndex,1);
+  removeButton.addEventListener('click', () => {
+    tasks.splice(0,1);
     showTasks();
-  };
+  });
   remove.appendChild(removeButton);
 }
 
