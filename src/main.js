@@ -40,10 +40,11 @@ const createStatusButton = (task, status) => {
 const createRemoveButton = (task, remove) => {
   const removeButton = document.createElement('button');
   removeButton.innerText = task.remove;
-  removeButton.addEventListener('click', () => {
-    tasks.splice(0,1);
+  removeButton.onclick = function() {
+    const tr = this.parentNode.parentNode;
+    tasks.splice(tr.sectionRowIndex,1);
     showTasks();
-  });
+  };
   remove.appendChild(removeButton);
 }
 
